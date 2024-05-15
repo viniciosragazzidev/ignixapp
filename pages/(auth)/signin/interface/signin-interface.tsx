@@ -1,8 +1,9 @@
 "use client";
 import { signIn } from "next-auth/react";
-import React, { useCallback } from "react";
-import { useFormStatus } from "react-dom";
-import SigninButton from "../components/signin_button";
+import React, { useCallback, useEffect } from "react";
+import { BiLoader } from "react-icons/bi";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 export const SigninInterface = () => {
   const onSubmitData = useCallback((formData: FormData) => {
@@ -13,12 +14,23 @@ export const SigninInterface = () => {
       email,
       password,
     };
-
+    setLoading(true);
     signIn("credentials", {
       ...user,
       redirect: true,
       callbackUrl: "/",
     });
+  }, []);
+
+  const [loading, setLoading] = React.useState(false);
+
+  const searchParams = useSearchParams();
+  const error = searchParams?.get("error");
+
+  useEffect(() => {
+    if (error === "CredentialsSignin") {
+      toast("Usuário ou senha inválido");
+    }
   }, []);
 
   return (
@@ -47,7 +59,13 @@ export const SigninInterface = () => {
             />
           </div>
         </div>
-        <SigninButton />
+
+        <button
+          type="submit"
+          className="w-full   max-w-lg font-semibold  mt-10"
+        >
+          {loading ? <BiLoader className="animate-spin" /> : "Entrar"}
+        </button>
       </form>
 
       <span className="py-5">or</span>

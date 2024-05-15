@@ -16,10 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <RootProvider>
-      <html lang="pt-br">
-        <body className={inter.className}>{children}</body>
-      </html>
-    </RootProvider>
+    <html
+      lang="pt-br"
+      suppressHydrationWarning
+    >
+      <body className={inter.className}>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
   );
 }
