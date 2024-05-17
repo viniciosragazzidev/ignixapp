@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../shared/styles/globals.css";
 import RootProvider from "@/shared/components/providers/RootProvider";
-import { ViewTransitions } from "next-view-transitions";
 import { Toaster } from "@/shared/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,16 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html
-        lang="pt-br"
-        suppressHydrationWarning
-      >
-        <body className={`${inter.className} bg-background`}>
-          <Toaster />
-          <RootProvider>{children}</RootProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+    <html
+      lang="pt-br"
+      suppressHydrationWarning
+    >
+      <body className={`${inter.className} bg-background`}>
+        <Toaster />
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
   );
 }

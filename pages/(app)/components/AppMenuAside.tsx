@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/shared/components/ui/tooltip";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import {
   Home,
   LineChart,

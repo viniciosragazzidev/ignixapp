@@ -2,8 +2,6 @@
 import React from "react";
 import { AppInterface } from "../interface/app-interface";
 import { getUserPermissions } from "@/shared/services/casl/actions/get-user-permissions";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { auth } from "@/shared/services/auth";
 
 const AppContainer = async () => {
