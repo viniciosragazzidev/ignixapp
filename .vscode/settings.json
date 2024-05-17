@@ -1,0 +1,12 @@
+{
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.folders.customClones": [
+    {
+      "name": "casl",
+      "base": "casl",
+      "color": "black",
+      "lightColor": "black",
+      "folderNames": ["casl"]
+    }
+  ]
+}

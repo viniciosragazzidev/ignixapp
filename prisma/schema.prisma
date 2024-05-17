@@ -17,16 +17,20 @@ datasource db {
 enum AppRole {
   OWNER
   ADMIN
-  USER
+  MEMBER
+  BILLING
+  VISITOR
 }
 
 model User {
   id            String          @id @default(cuid())
   name          String
+  surname       String?
   email         String          @unique
-  password      String?
+  password      String          @default(cuid())
+  linkedAccount Boolean         @default(false)
   image         String?
-  role          AppRole         @default(USER)
+  role          AppRole         @default(VISITOR)
   emailVerified DateTime?
   Authenticator Authenticator[]
 
@@ -34,6 +38,16 @@ model User {
   updatedAt DateTime  @updatedAt
   Session   Session[]
   Account   Account[]
+
+  permissions Permission[]
+}
+
+model Permission {
+  id       String @id @default(cuid())
+  action   String // Exemplo: "read", "create", "update", "delete"
+  resource String // Exemplo: "Post", "Comment", "User"
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String
 }
 
 model Account {

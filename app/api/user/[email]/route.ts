@@ -3,16 +3,16 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  { params }: { params: { email: string } }
 ) {
-  const { userId } = params;
-  if (!userId) {
-    return NextResponse.json({ error: "Missing userId" });
+  const { email } = params;
+  if (!email) {
+    return NextResponse.json({ error: "Missing email" });
   }
   try {
     const user = await db.user.findFirst({
       where: {
-        id: userId,
+        email: email,
       },
     });
     return NextResponse.json({ user: user });

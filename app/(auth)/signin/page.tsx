@@ -1,5 +1,5 @@
 import SigninContainer from "@/pages/(auth)/signin/container/signin-container";
-import React from "react";
+import React, { Suspense } from "react";
 
 const Signin = () => {
   return <SigninContainer />;

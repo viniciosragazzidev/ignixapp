@@ -1,10 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { Profile, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import db from "./db";
 
 import { compareSync } from "bcrypt-ts";
+import { cookies } from "next/headers";
 
 export const {
   handlers: { GET, POST },
@@ -80,6 +81,13 @@ export const {
         role: dbUser.role,
       };
       return data;
+    },
+    async signIn({ account, user, credentials, email, profile }) {
+      cookies().set("userId", user!.id || "", {
+        expires: Date.now() + 5000,
+      });
+
+      return true;
     },
   },
   pages: {

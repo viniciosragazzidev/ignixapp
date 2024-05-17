@@ -20,6 +20,10 @@ const ProtectRoute = async ({
     redirect("/");
   }
 
+  if (user && !role) {
+    redirect("/");
+  }
+
   return <>{children}</>;
 };
 

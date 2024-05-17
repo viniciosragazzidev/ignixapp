@@ -1,15 +1,27 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SessionProviderApp from "./SessionProvider";
 import { Toaster } from "../ui/sonner";
+import { HibridToaster } from "./HibridToast";
+import { ThemeProvider } from "next-themes";
+import { TooltipProvider } from "../ui/tooltip";
 
 const RootProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <SessionProviderApp>
-        {" "}
-        <Toaster />
-        {children}
-      </SessionProviderApp>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <TooltipProvider>
+          <SessionProviderApp>
+            {" "}
+            <HibridToaster />
+            {children}
+          </SessionProviderApp>
+        </TooltipProvider>
+      </ThemeProvider>
     </>
   );
 };
