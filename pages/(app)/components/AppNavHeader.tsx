@@ -119,7 +119,7 @@ const AppNavHeader = ({ user }: { user: any }) => {
         <BreadcrumbList>
           {pathnameSplited.map((item, index) => (
             <>
-              <BreadcrumbItem>
+              <BreadcrumbItem key={item}>
                 <BreadcrumbLink asChild>
                   <Link
                     className={`${
