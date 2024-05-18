@@ -1,4 +1,4 @@
-// import SigninContainer from "@/pages/(auth)/signin/container/signin-container";
+// import SigninContainer from "@/__pages/(auth)/signin/container/signin-container";
 // import React, { Suspense } from "react";
 
 const Signin = () => {
