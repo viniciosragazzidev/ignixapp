@@ -22,8 +22,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${inter.className} bg-background`}>
-        <Toaster />
-        <RootProvider>{children}</RootProvider>
+        {/* <Toaster /> */}
+        {/* <RootProvider> */}
+
+        {children}
+
+        {/* </RootProvider> */}
       </body>
     </html>
   );
