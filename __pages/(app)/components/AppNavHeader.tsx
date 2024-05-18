@@ -2,23 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
-import {
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
+import { Package2, PanelLeft, Search, Settings } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/shared/components/ui/breadcrumb";
 import { Input } from "@/shared/components/ui/input";

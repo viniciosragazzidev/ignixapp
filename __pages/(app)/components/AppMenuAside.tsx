@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/shared/components/ui/tooltip";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
+
 import {
   Home,
   LineChart,
