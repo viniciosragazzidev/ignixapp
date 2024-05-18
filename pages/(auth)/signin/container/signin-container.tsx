@@ -6,13 +6,13 @@ import { HttpErrorCode } from "@/shared/@enums/enums";
 import { SigninAction } from "../actions/SigninAction";
 import { signIn } from "@/shared/services/auth";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import SigninInterface from "../interface/signin-interface";
 
 const SigninContainer = async () => {
   const session = await auth();
-  const cookiesNow = cookies().get("hibrid");
-  if (session?.user && !cookiesNow) {
+  // const cookiesNow = cookies().get("hibrid");
+  if (session?.user) {
     redirect("/app");
   }
 
