@@ -24,7 +24,7 @@ export const {
       async authorize(credentials) {
         const email = credentials?.email as string;
         const password = credentials?.password as string;
-
+        // ===
         if (!email || !password) {
           return null;
         }
