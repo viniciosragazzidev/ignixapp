@@ -2,7 +2,11 @@ import { SystemContainer } from "@/__pages/system/container/system-container";
 import React from "react";
 
 const SystemPage = () => {
-  return <>{/* <SystemContainer />; */}</>;
+  return (
+    <>
+      <SystemContainer />;
+    </>
+  );
 };
 
 export default SystemPage;
