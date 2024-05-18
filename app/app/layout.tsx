@@ -1,8 +1,8 @@
 import { auth } from "@/shared/services/auth";
-import AppMenuAside from "@/pages/(app)/components/AppMenuAside";
+import AppMenuAside from "@/__pages/(app)/components/AppMenuAside";
 import { redirect } from "next/navigation";
 // import { cookies } from "next/headers";
-import AppNavHeader from "@/pages/(app)/components/AppNavHeader";
+import AppNavHeader from "@/__pages/(app)/components/AppNavHeader";
 import { Suspense } from "react";
 
 export default async function AppSistemLayout({

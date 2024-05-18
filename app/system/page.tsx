@@ -1,4 +1,4 @@
-import { SystemContainer } from "@/pages/system/container/system-container";
+import { SystemContainer } from "@/__pages/system/container/system-container";
 import React from "react";
 
 const SystemPage = () => {
