@@ -18,6 +18,8 @@ export const SigninAction = async (user: any) => {
       .then((response) => response.json())
       .then((data) => data.user);
 
+    console.log(userSession);
+
     if (!userSession) {
       return {
         message: "❌ Usuário não encontrado!",

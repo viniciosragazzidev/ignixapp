@@ -1,6 +1,8 @@
 "use server";
 import React from "react";
 import SubmitButton from "../../components/submitButton";
+import { Label } from "@/shared/components/ui/label";
+import { Input } from "@/shared/components/ui/input";
 
 const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
   return (
@@ -10,8 +12,8 @@ const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
     >
       <div className="space-y-7 flex flex-col justify-center w-full ">
         <div className="grid w-full max-w-lg items-center gap-2 relative">
-          <label htmlFor="email">Email</label>
-          <input
+          <Label htmlFor="email">Email</Label>
+          <Input
             type="email"
             id="email"
             name="email"
@@ -19,8 +21,8 @@ const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
           />
         </div>
         <div className="grid w-full max-w-lg items-center gap-2 relative">
-          <label htmlFor="password">Senha</label>
-          <input
+          <Label htmlFor="password">Senha</Label>
+          <Input
             type="password"
             name="password"
             id="password"
