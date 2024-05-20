@@ -17,6 +17,7 @@ const config = {
         "2xl": "1400px",
       },
     },
+
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -53,11 +54,13 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -74,7 +77,10 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("tailwindcss-inner-border"),
+  ],
 } satisfies Config;
 
 export default config;

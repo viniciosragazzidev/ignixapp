@@ -1,9 +1,8 @@
 import { auth } from "@/shared/services/auth";
-import AppMenuAside from "@/__pages/(app)/components/AppMenuAside";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import AppNavHeader from "@/__pages/(app)/components/AppNavHeader";
 import { Suspense } from "react";
+import NavbarHeader from "@/__pages/(app)/app/components/NavbarHeader";
 
 export default async function AppSistemLayout({
   children,
@@ -15,18 +14,15 @@ export default async function AppSistemLayout({
   const user = session?.user;
   const cookiesNow = cookies().get("userId");
 
-  if (!user) {
+  if (!user && !cookiesNow) {
     redirect("/signin");
   }
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <main className="flex">
-        <AppMenuAside />
-        <div className=" w-full flex flex-col sm:gap-4 sm:pt-4 sm:pl-14">
-          <AppNavHeader user={user} />
-          {children}
-        </div>
-      </main>{" "}
+      <main className=" w-full flex flex-col ">
+        <NavbarHeader user={user} />
+        {children}
+      </main>
     </Suspense>
   );
 }
