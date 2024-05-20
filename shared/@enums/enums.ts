@@ -10,3 +10,8 @@ export enum HttpErrorCode {
   ServiceUnavailable = 503,
   GatewayTimeout = 504,
 }
+
+export enum HttpRoutes {
+  user = "/xu23r",
+  orders = "/x0rd3rs",
+}

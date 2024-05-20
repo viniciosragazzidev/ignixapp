@@ -1,3 +1,4 @@
+import { auth } from "@/shared/services/auth";
 import db from "@/shared/services/db";
 import { NextResponse, NextRequest } from "next/server";
 
@@ -6,6 +7,9 @@ export async function GET(
   { params }: { params: { email: string } }
 ) {
   const { email } = params;
+  const session = await auth();
+  const userIsOwner = session?.user.role === "OWNER";
+  const sessionUserEmail = session?.user.email;
   if (!email) {
     return NextResponse.json({ error: "Missing email" });
   }

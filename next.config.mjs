@@ -10,6 +10,9 @@ const nextConfig = {
       {
         hostname: "via.assets.soom",
       },
+      {
+        hostname: "via.assets.so",
+      },
     ],
   },
 };

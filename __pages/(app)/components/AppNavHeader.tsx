@@ -105,32 +105,37 @@ const AppNavHeader = ({ user }: { user: any }) => {
         </SheetContent>
       </Sheet>
       <Breadcrumb className="hidden md:flex">
-        <BreadcrumbList>
-          {pathnameSplited.map((item, index) => (
-            <>
-              <BreadcrumbItem key={item}>
-                <BreadcrumbLink asChild>
-                  <Link
-                    className={`${
-                      item == pathnameSplited[pathnameSplited.length - 1]
-                        ? "text-foreground font-bold"
-                        : ""
-                    }
+        <BreadcrumbList className="flex gap-2 items-center">
+          <>
+            {pathnameSplited.map((item, index) => (
+              <div
+                className="flex gap-2 items-center"
+                key={item}
+              >
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link
+                      className={`${
+                        item == pathnameSplited[pathnameSplited.length - 1]
+                          ? "text-foreground font-bold"
+                          : ""
+                      }
                        
                     `}
-                    href={novoPath(item, pathname!) || "/"}
-                  >
-                    {capitalizeFirstLetter(item)}
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator
-                className={`${
-                  index + 1 === pathnameSplited.length && "hidden"
-                }`}
-              />
-            </>
-          ))}
+                      href={novoPath(item, pathname!) || "/"}
+                    >
+                      {capitalizeFirstLetter(item)}
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator
+                  className={`${
+                    index + 1 === pathnameSplited.length && "hidden"
+                  }`}
+                />
+              </div>
+            ))}
+          </>
         </BreadcrumbList>
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">

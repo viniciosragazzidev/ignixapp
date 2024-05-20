@@ -1,20 +1,23 @@
 "use server";
-import { HttpErrorCode } from "@/shared/@enums/enums";
+import { HttpErrorCode, HttpRoutes } from "@/shared/@enums/enums";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
 import { compareSync } from "bcrypt-ts";
 const urlBase = process.env.NEXT_PUBLIC_BASE_URL;
 export const SigninAction = async (user: any) => {
   try {
-    const userSession = await fetch(`${urlBase}/api/user/${user.email}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-      next: {
-        revalidate: 100,
-        tags: ["user"],
-      },
-    })
+    const userSession = await fetch(
+      `${urlBase}/api/${HttpRoutes.user}/${user.email}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+        next: {
+          revalidate: 100,
+          tags: ["user"],
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => data.user);
 
