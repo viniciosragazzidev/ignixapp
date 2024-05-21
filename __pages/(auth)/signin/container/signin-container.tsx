@@ -7,7 +7,7 @@ import { SigninAction } from "../actions/SigninAction";
 import { signIn } from "@/shared/services/auth";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
 import { cookies } from "next/headers";
-import SigninInterface from "../interface/signin-interface";
+import { SigninInterface } from "../interface/signin-interface";
 
 const SigninContainer = async () => {
   const session = await auth();
@@ -26,6 +26,8 @@ const SigninContainer = async () => {
         email: email,
         password: password,
       };
+      console.log(user);
+
       const signinUser = await SigninAction(user);
       const message = signinUser.message;
       const code = signinUser.code;

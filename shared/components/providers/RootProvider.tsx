@@ -11,7 +11,6 @@ const RootProvider = ({ children }: { children: React.ReactNode }) => {
       <ThemeProvider
         attribute="class"
         defaultTheme="light"
-        disableTransitionOnChange
       >
         <TooltipProvider>
           <SessionProviderApp>

@@ -1,3 +1,4 @@
+import SignoutButton from "@/shared/components/SignoutButton";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,7 +43,9 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
         </DropdownMenuItem>
 
         <DropdownMenuItem className="cursor-pointer w-full h-full transition-colors rounded-lg hover:bg-primary/50">
-          <span>Sair</span>
+          <SignoutButton>
+            <span>Sair</span>
+          </SignoutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

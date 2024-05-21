@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/shared/components/ui/button";
 import { signIn } from "next-auth/react";
 import React from "react";
 
@@ -9,7 +10,13 @@ const SigninGoogle = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit">Sign in Google</button>
+      <Button
+        type="submit"
+        variant="default"
+        className="w-full bg-secondary-foreground hover:bg-secondary-foreground/60"
+      >
+        Entrar com Google
+      </Button>
     </form>
   );
 };

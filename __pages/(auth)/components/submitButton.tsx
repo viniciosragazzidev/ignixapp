@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/shared/components/ui/button";
 import React from "react";
 import { useFormStatus } from "react-dom";
 import { BiLoader } from "react-icons/bi";
@@ -7,9 +8,9 @@ const SubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
-    <button
+    <Button
       type="submit"
-      className="w-full flex items-center justify-center  max-w-xs font-semibold bg-primary text-slate-200 rounded-md self-center py-2  my-10  disabled:opacity-60 disabled:cursor-not-allowed"
+      className="w-full bg-secondary hover:bg-secondary/80 disabled:opacity-60 disabled:cursor-not-allowed"
       disabled={pending}
     >
       {pending ? (
@@ -17,9 +18,9 @@ const SubmitButton = () => {
           <BiLoader className="animate-spin" />{" "}
         </>
       ) : (
-        <>Signin</>
+        <>Entrar</>
       )}
-    </button>
+    </Button>
   );
 };
 

@@ -1,8 +1,8 @@
-import React from "react";
-import SigninGoogle from "../../components/signinGoogle";
+import Image from "next/image";
+
 import SigninForm from "../components/signinForm";
 
-const SigninInterface = ({
+export const SigninInterface = ({
   sendUser,
   session,
 }: {
@@ -10,22 +10,22 @@ const SigninInterface = ({
   session: any;
 }) => {
   return (
-    <main className="w-full h-full min-h-screen relative">
-      <div className="grid grid-cols-1 w-full gap-4 min-h-screen md:grid-cols-6">
-        <div className="bg-muted/40  w-full h-full col-span-3">
-          <h1> Ola mundo</h1>
-        </div>
-        <div className=" w-full h-full flex justify-center items-center col-span-3">
-          <div className="w-full flex justify-center">
-            <SigninForm
-              sendUser={sendUser}
-              session={session}
-            />
-          </div>
-        </div>
+    <div className="w-full lg:grid h-max min-h-screen  lg:grid-cols-2 ">
+      <div className="flex  justify-center bg-primary items-center">
+        <SigninForm
+          sendUser={sendUser}
+          session={session}
+        />
       </div>
-    </main>
+      <div className="hidden bg-muted lg:block">
+        <Image
+          src="/placeholder.svg"
+          alt="Image"
+          width="1920"
+          height="1080"
+          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+        />
+      </div>
+    </div>
   );
 };
-
-export default SigninInterface;

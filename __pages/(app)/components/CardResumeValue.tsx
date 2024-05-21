@@ -8,20 +8,35 @@ import {
 } from "@/shared/components/ui/card";
 import { cn } from "@/shared/lib/utils";
 
-export default function CardResumeValue({ className }: { className?: string }) {
+type PropsCardResumeValue = {
+  className?: string;
+  title?: string;
+  value?: string;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+  lastMonthValue?: string;
+};
+
+export default function CardResumeValue({
+  props,
+}: {
+  props: PropsCardResumeValue;
+}) {
   return (
     <Card
       className={cn(
-        `${className} w-full bg-secondary/50 cursor-pointer hover:bg-secondary/70 transition-all border-none text-muted`
+        `${props.className} w-full bg-secondary/50 cursor-pointer hover:bg-secondary/70 transition-all border-none text-muted`
       )}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-        <DollarSign className="h-4 w-4 text-muted-foreground" />
+        <CardTitle className="text-sm font-medium">{props.title}</CardTitle>
+        {props.icon}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">$45,231.89</div>
-        <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+        <div className="text-2xl font-bold">{props.value}</div>
+        <p className="text-xs text-muted-foreground">
+          {props.lastMonthValue} que o mês passado
+        </p>
       </CardContent>
     </Card>
   );
