@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/shared/components/ui/table";
 import { ItemHeaderTableOS } from "@/shared/constants";
-import { OSTypedata } from "@/shared/@types/types";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
