@@ -4,7 +4,7 @@ import React from "react";
 import { useFormStatus } from "react-dom";
 import { BiLoader } from "react-icons/bi";
 
-const SubmitButton = () => {
+const SubmitButton = ({ submit_text }: { submit_text?: string }) => {
   const { pending } = useFormStatus();
 
   return (
@@ -18,7 +18,7 @@ const SubmitButton = () => {
           <BiLoader className="animate-spin" />{" "}
         </>
       ) : (
-        <>Entrar</>
+        <>{submit_text || "Entrar"}</>
       )}
     </Button>
   );

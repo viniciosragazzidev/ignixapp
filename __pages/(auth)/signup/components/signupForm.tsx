@@ -7,19 +7,47 @@ import { Link } from "next-view-transitions";
 import { Button } from "@/shared/components/ui/button";
 import SigninGoogle from "../../components/signinGoogle";
 
-const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
+const SigninForm = ({
+  session,
+  createUser,
+}: {
+  session: any;
+  createUser: any;
+}) => {
   return (
     <div className="mx-auto grid w-full place-content-center h-min max-w-96   gap-6 text-muted">
       <div className="grid gap-2 text-start">
-        <h1 className="text-3xl font-bold">Faça Login</h1>
+        <h1 className="text-3xl font-bold">Crie sua conta</h1>
         <p className="text-balance text-sm text-muted-foreground">
-          Digite suas informações abaixo para entrar na sua conta.
+          Digite suas informações abaixo para criar sua conta.
         </p>
       </div>
       <form
-        action={sendUser}
+        action={createUser}
         className="grid gap-4"
       >
+        <div className="flex gap-2">
+          <div className="grid gap-2">
+            <Label htmlFor="name">Nome</Label>
+            <Input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Joe"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="surname">Sobrenome</Label>
+            <Input
+              type="text"
+              id="surname"
+              name="surname"
+              placeholder="Doe"
+              required
+            />
+          </div>
+        </div>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
           <Input
@@ -31,15 +59,7 @@ const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
           />
         </div>
         <div className="grid gap-2">
-          <div className="flex items-center">
-            <Label htmlFor="password">Senha</Label>
-            <Link
-              href="/forgot-password"
-              className="ml-auto inline-block text-sm underline"
-            >
-              Esqueceu sua senha?
-            </Link>
-          </div>
+          <Label htmlFor="password">Senha</Label>
           <Input
             id="password"
             type="password"
@@ -47,16 +67,16 @@ const SigninForm = ({ session, sendUser }: { session: any; sendUser: any }) => {
             required
           />
         </div>
-        <SubmitButton />
+        <SubmitButton submit_text="Criar conta" />
       </form>
       <SigninGoogle />
-      <div className="mt-4 text-center text-sm flex items-center justify-center gap-1">
-        Não tem uma conta?
+      <div className="mt-4 text-center text-sm flex items-center gap-1 justify-center">
+        Ja tem uma conta?
         <Link
-          href="/signup"
+          href="/signin"
           className="underline"
         >
-          Crie uma
+          Faca Login
         </Link>
       </div>
     </div>

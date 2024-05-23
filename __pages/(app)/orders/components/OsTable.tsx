@@ -21,8 +21,10 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { BiEdit } from "react-icons/bi";
 import { Button } from "@/shared/components/ui/button";
+import { Badge } from "@/shared/components/ui/badge";
+import { OrderTypeTable } from "../@types/types";
 
-const OsTable = ({ data }: { data: OSTypedata[] }) => {
+const OsTable = ({ data }: { data: OrderTypeTable[] }) => {
   return (
     <Table className="w-full bg-transparent p-4 overflow-hidden rounded-lg">
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -44,49 +46,64 @@ const OsTable = ({ data }: { data: OSTypedata[] }) => {
         </TableRow>
       </TableHeader>
       <TableBody className="text-left">
-        {data.map((item: OSTypedata, index) => (
+        {data.map((item: OrderTypeTable, index) => (
           <TableRow key={index}>
             <TableCell className="whitespace-nowrap">{item.id}</TableCell>
             <TableCell className="whitespace-nowrap">
               <div className="flex flex-col">
-                <span className="font-medium">{item.custome_name}</span>
+                <span className="font-medium">{item.customer.name}</span>
                 <span className="text-muted-foreground">
-                  {item.custome_contact}
+                  {item.customer.contact}
                 </span>
               </div>
             </TableCell>
             <TableCell className="whitespace-nowrap">
               <DropdownMenu>
-                <DropdownMenuTrigger className=" bg-primary/50 cursor-pointer px-5 py-1 rounded-full  text-muted flex items-center gap-2 ">
+                <DropdownMenuTrigger className=" bg-primary/80 cursor-pointer px-5 py-1 rounded-full  text-muted flex items-center gap-2 ">
                   <span>
                     <EyeIcon className="h-4 w-4" />
                   </span>{" "}
-                  <span>2</span>
+                  <span>{item.items.length}</span>
                 </DropdownMenuTrigger>
 
-                <DropdownMenuContent className="w-max min-w-52 bg-secondary-foreground outline-none divide-y divide-muted/30 space-y-2 ring-0 border-0 text-muted  pb-3 mt-3 px-4 pt-1 rounded-lg">
-                  {item.osItems.map((item) => (
+                <DropdownMenuContent className="w-max min-w-52 py-1  bg-secondary-foreground outline-none divide-y divide-muted/30  ring-0 border-0 text-muted  pb-3 mt-3 px-4 pt-1 rounded-lg">
+                  {item.items.map((item) => (
                     <DropdownMenuItem
                       key={item.id}
-                      className="cursor-pointer w-full h-full transition-colors hover:bg-primary/50 pt-2 flex flex-col gap-1"
+                      className="cursor-pointer w-full h-full px-2 rounded-xl transition-colors hover:bg-primary/50 py-2 flex flex-col gap-1 border-none outline-none right-0"
                     >
                       <span className="text-sm font-medium">
-                        {item.item_name} {item.item_brand}
+                        {item.name} {item.brand}
                       </span>
                       <span className="text-xs">
-                        {item.item_model}{" "}
-                        <span className="font-bold"> R${item.item_value}</span>
+                        {item.model}{" "}
+                        <span className="font-bold">
+                          {" "}
+                          R${item.repair_value}
+                        </span>
                       </span>
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
-            <TableCell className="whitespace-nowrap">{item.osStatus}</TableCell>
             <TableCell className="whitespace-nowrap">
-              {item.date.toISOString().split("T")[0]}
+              {" "}
+              <Badge
+                className="text-xs"
+                variant={`${
+                  item.status.toLocaleLowerCase() === "pendente"
+                    ? "outline"
+                    : "default"
+                }`}
+              >
+                {item.status}
+              </Badge>
             </TableCell>
-            <TableCell className="text-right">R${item.osValue || 0} </TableCell>
+            <TableCell className="whitespace-nowrap">
+              {item.createdAt.toString().split("T")[0]}
+            </TableCell>
+            <TableCell className="text-right">R${item.value || 0} </TableCell>
             <TableCell className="text-right">
               <Button
                 variant="default"

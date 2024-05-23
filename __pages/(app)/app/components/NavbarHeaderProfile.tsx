@@ -18,7 +18,11 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
           <div className="flex items-center gap-4">
             <span className="flex relative h-9 w-9 items-center justify-center bg-secondary text-sm rounded-full overflow-hidden">
               <Image
-                src={user.image}
+                src={
+                  user.image ||
+                  `https://via.assets.so/img.jpg?w=80&h=80&tc=blue&bg=#cecece
+                `
+                }
                 alt={user.name}
                 fill
               />

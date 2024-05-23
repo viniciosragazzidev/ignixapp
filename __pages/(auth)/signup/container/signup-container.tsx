@@ -3,47 +3,43 @@ import React from "react";
 import { auth } from "@/shared/services/auth";
 import { redirect } from "next/navigation";
 import { HttpErrorCode } from "@/shared/@enums/enums";
-import { SigninAction } from "../actions/SigninAction";
-import { signIn } from "@/shared/services/auth";
+import { SignupAction } from "../actions/SignupAction";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
 import { cookies } from "next/headers";
-import { SigninInterface } from "../interface/signin-interface";
+import { SignupInterface } from "../interface/signup-interface";
+import { revalidatePath } from "next/cache";
 
-const SigninContainer = async () => {
+const SignupContainer = async () => {
   const session = await auth();
   const cookiesNow = cookies().get("hibrid");
   if (session?.user && !cookiesNow) {
     redirect("/app");
   }
 
-  const sendUser = async (formData: FormData) => {
+  const createUser = async (formData: FormData) => {
     "use server";
     try {
+      const name = formData.get("name");
+      const surname = formData.get("surname");
       const email = formData.get("email");
       const password = formData.get("password");
 
       const user = {
+        name: name,
+        surname: surname,
         email: email,
         password: password,
       };
       console.log(user);
 
-      const signinUser = await SigninAction(user);
-      const message = signinUser.message;
-      const code = signinUser.code;
+      const signupUser = await SignupAction(user);
+      const message = signupUser.message;
+      const code = signupUser.code;
 
       if (code === HttpErrorCode.OK) {
-        await signIn("credentials", {
-          email,
-          password,
-          redirect: false,
-        });
-        setHibrid({
-          type: "signin",
-          message: message,
-        });
+        revalidatePath("/signin");
 
-        redirect("/app");
+        redirect("/signin");
       } else {
         setHibrid({
           type: "error",
@@ -56,11 +52,11 @@ const SigninContainer = async () => {
   };
 
   return (
-    <SigninInterface
-      sendUser={sendUser}
+    <SignupInterface
+      createUser={createUser}
       session={session}
     />
   );
 };
 
-export default SigninContainer;
+export default SignupContainer;

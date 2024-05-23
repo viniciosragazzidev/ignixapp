@@ -1,9 +1,9 @@
 "use server";
 import { HttpErrorCode, HttpRoutes } from "@/shared/@enums/enums";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
-import { compareSync } from "bcrypt-ts";
+import { compareSync, hashSync } from "bcrypt-ts";
 const urlBase = process.env.NEXT_PUBLIC_BASE_URL;
-export const SigninAction = async (user: any) => {
+export const SignupAction = async (user: any) => {
   try {
     const userSession = await fetch(
       `${urlBase}/api/${HttpRoutes.user}/${user.email}`,
@@ -21,26 +21,37 @@ export const SigninAction = async (user: any) => {
       .then((response) => response.json())
       .then((data) => data.user);
 
-    console.log(user, userSession);
-
-    if (!userSession) {
+    if (userSession) {
       return {
-        message: "❌ Usuário não encontrado!",
+        message: "❌ Usuário ja cadastrado com esse email!",
         code: HttpErrorCode.NotFound,
       };
     } else {
-      const isPasswordValid = compareSync(user.password, userSession.password);
+      const newUser = await fetch(`${urlBase}/api/${HttpRoutes.user}/create`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((data) => data.user);
 
-      if (isPasswordValid) {
+      if (newUser) {
+        setHibrid({
+          type: "success",
+          message: "✅ Usuário criado com sucesso!",
+        });
+
         return {
-          message: "🎉 Login efetuado com sucesso!",
-          user: userSession,
+          message: "✅ Usuário criado com sucesso!",
           code: HttpErrorCode.OK,
+          user: newUser,
         };
       } else {
         return {
-          message: "🔑 Email ou senha inválido!",
-          code: HttpErrorCode.Unauthorized,
+          message: "❌ Algo deu errado. Tente novamente mais tarde!",
+          code: HttpErrorCode.BadRequest,
         };
       }
     }

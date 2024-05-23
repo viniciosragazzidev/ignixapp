@@ -15,32 +15,40 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
+enum StatusOs {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDO
+  ENTREGUE
+  CANCELADO
+}
+
 enum AppRole {
-  OWNER
-  ADMIN
-  MEMBER
-  BILLING
   VISITOR
+  MEMBER
+  ADMIN
+  OWNER
+  BILLING
 }
 
 model User {
-  id            String          @id @default(cuid())
-  name          String
-  surname       String?
-  email         String          @unique
-  password      String          @default(cuid())
-  linkedAccount Boolean         @default(false)
-  image         String?
-  role          AppRole         @default(VISITOR)
-  emailVerified DateTime?
-  Authenticator Authenticator[]
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Session   Session[]
-  Account   Account[]
-
-  permissions Permission[]
+  id             String              @id @default(cuid())
+  name           String
+  surname        String?
+  email          String              @unique
+  password       String
+  linkedAccount  Boolean             @default(false)
+  image          String?
+  role           AppRole             @default(VISITOR)
+  emailVerified  DateTime?
+  Authenticators Authenticator[]
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  Sessions       Session[]
+  Accounts       Account[]
+  permissions    Permission[]
+  ownerCompanies Company[]           @relation("OwnerCompanies")
+  memberships    CompanyMembership[]
 }
 
 model Permission {
@@ -51,7 +59,118 @@ model Permission {
   userId   String
 }
 
+model Company {
+  id        String              @id @default(cuid())
+  name      String
+  owner     User                @relation("OwnerCompanies", fields: [ownerId], references: [id])
+  ownerId   String
+  units     Unit[]
+  members   CompanyMembership[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+}
+
+model Unit {
+  id                  String             @id @default(cuid())
+  name                String
+  company             Company            @relation(fields: [companyId], references: [id])
+  companyId           String
+  orders              Order[]
+  cashFlows           CashFlow[]
+  sales               Sale[]
+  customers           Customer[]
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+  CompanyMembership   CompanyMembership? @relation(fields: [companyMembershipId], references: [id])
+  companyMembershipId String?
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  unit       Unit     @relation(fields: [unitId], references: [id])
+  unitId     String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String
+  items      Item[]
+  status     StatusOs
+  value      Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  unit      Unit     @relation(fields: [unitId], references: [id])
+  unitId    String
+  name      String
+  surname   String?
+  contact   String
+  document  String
+  email     String?
+  address   String
+  city      String
+  state     String?
+  zipCode   String
+  country   String?
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Item {
+  id                 String   @id @default(cuid())
+  name               String
+  brand              String
+  model              String
+  nSerie             String?
+  category           String?
+  quantity           Int
+  problemDescription String
+  repairDescription  String?
+  repairValue        Float?
+  status             StatusOs
+  order              Order    @relation(fields: [orderId], references: [id])
+  orderId            String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model CashFlow {
+  id          String   @id @default(cuid())
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  unitId      String
+  date        DateTime
+  description String
+  amount      Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Sale {
+  id          String   @id @default(cuid())
+  unit        Unit     @relation(fields: [unitId], references: [id])
+  unitId      String
+  date        DateTime
+  description String
+  amount      Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CompanyMembership {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId String
+  role      AppRole  @default(MEMBER)
+  units     Unit[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Account {
+  id                String   @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -63,35 +182,34 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
+  id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model VerificationToken {
+  id         String   @id @default(cuid())
   identifier String
   token      String
   expires    DateTime
 
-  @@id([identifier, token])
+  @@unique([identifier, token])
 }
 
-// Optional for WebAuthn support
 model Authenticator {
+  id                   String  @id @default(cuid())
   credentialID         String  @unique
   userId               String
   providerAccountId    String
@@ -100,8 +218,7 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([userId, credentialID])
+  @@unique([userId, credentialID])
 }

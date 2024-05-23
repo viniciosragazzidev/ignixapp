@@ -15,3 +15,11 @@ export enum HttpRoutes {
   user = "/xu23r",
   orders = "/x0rd3rs",
 }
+
+export enum StatusOs {
+  PENDENTE = "PENDENTE",
+  EM_ANDAMENTO = "EM ANDAMENTO",
+  CONCLUIDO = "CONCLUIDO",
+  ENTREGUE = "ENTREGUE",
+  CANCELADO = "CANCELADO",
+}

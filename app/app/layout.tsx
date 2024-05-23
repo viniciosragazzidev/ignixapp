@@ -18,11 +18,9 @@ export default async function AppSistemLayout({
     redirect("/signin");
   }
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <main className=" w-full flex flex-col ">
-        <NavbarHeader user={user} />
-        {children}
-      </main>
-    </Suspense>
+    <main className=" w-full flex flex-col ">
+      <NavbarHeader user={user} />
+      {children}
+    </main>
   );
 }
