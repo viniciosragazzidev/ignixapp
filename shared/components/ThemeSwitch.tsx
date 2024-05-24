@@ -15,7 +15,7 @@ export function ModeToggle() {
 
   return (
     <Button
-      variant="outline"
+      variant="success"
       className="overflow-hidden relative"
       onClick={() => {
         setThemeState(theme === "light" ? "dark" : "light");

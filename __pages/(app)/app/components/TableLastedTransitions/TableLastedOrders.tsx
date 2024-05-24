@@ -57,7 +57,7 @@ const TableLastedOrders = ({ data, header }: TableLastedOrdersProps) => {
           <TableCell className="hidden sm:table-cell">
             <Badge
               className="text-xs"
-              variant="outline"
+              variant="success"
             >
               Declined
             </Badge>

@@ -1,7 +1,7 @@
 // Orders
 
 export const ItemHeaderTableOS = [
-  { id: "id", name: "#ID" },
+  { id: "id", name: "#OS" },
   { id: "custome", name: "Cliente" },
   { id: "itens", name: "Itens" },
   { id: "status", name: "Status" },
