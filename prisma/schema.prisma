@@ -17,10 +17,11 @@ datasource db {
 
 enum StatusOs {
   PENDENTE
-  EM_ANDAMENTO
-  CONCLUIDO
+  INICIADO
+  FINALIZADO
   ENTREGUE
   CANCELADO
+  FECHADO
 }
 
 enum AppRole {
@@ -36,7 +37,7 @@ model User {
   name           String
   surname        String?
   email          String              @unique
-  password       String
+  password       String?             @default(cuid())
   linkedAccount  Boolean             @default(false)
   image          String?
   role           AppRole             @default(VISITOR)

@@ -47,8 +47,8 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
         </DropdownMenuItem>
 
         <DropdownMenuItem className="cursor-pointer w-full h-full transition-colors rounded-lg hover:bg-primary/50">
-          <SignoutButton>
-            <span>Sair</span>
+          <SignoutButton className="w-full h-full block">
+            <span className="flex w-full h-full">Sair</span>
           </SignoutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>

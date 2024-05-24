@@ -1,6 +1,7 @@
 import React from "react";
 import OsTable from "./OsTable";
 import { orderData } from "./DataTable";
+import { ItemHeaderTableOS } from "../../utils/TablesData";
 
 type OsTableContainerTypes = {
   type?: string;
@@ -15,10 +16,17 @@ const OsTableContainer = async ({
   date,
 }: OsTableContainerTypes) => {
   console.log(type, search, status, date);
+
+  const orderByLastDate = orderData.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+  const lastFiveItems = orderByLastDate.slice(0, 5);
   return (
     <>
-      {type}
-      <OsTable data={orderData} />
+      <OsTable
+        data={lastFiveItems}
+        header={ItemHeaderTableOS}
+      />
     </>
   );
 };

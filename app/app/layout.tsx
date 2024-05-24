@@ -18,7 +18,7 @@ export default async function AppSistemLayout({
     redirect("/signin");
   }
   return (
-    <main className=" w-full flex flex-col ">
+    <main className=" w-full flex flex-col bg-backgroundLight ">
       <NavbarHeader user={user} />
       {children}
     </main>

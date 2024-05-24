@@ -1,20 +1,19 @@
 import * as React from "react";
 
-import { ModeToggle } from "@/shared/components/ThemeSwitch";
 import CardResumeValue from "../../components/CardResumeValue";
 import { Button } from "@/shared/components/ui/button";
 import { CalendarIcon, PaperPlaneIcon, PlusIcon } from "@radix-ui/react-icons";
-import TableLastedServices from "../components/TableLastedServices";
 import TableLastedCashFlow from "../components/TableLastedCashFlow";
 import TableLastedSales from "../components/TableLastedSales";
-import { BiBookContent } from "react-icons/bi";
+import TableLastedOrdersContainer from "../components/TableLastedOrders/TableLastedOrdersContainer";
+import TableSuspenseLoading from "../../components/TableSuspenseLoading";
 
 export function AppInterface({ user, verify }: { user: any; verify: boolean }) {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40 ">
-      <header className="w-full min-h-20 bg-primary space-y-2 pb-4 rounded-b-3xl">
+    <div className="flex min-h-screen w-full flex-col  ">
+      <header className="w-full min-h-20  space-y-2 pb-4 rounded-b-3xl">
         <div className="container py-4 space-y-4">
-          <h1 className=" text-muted text-lg font-semibold">Resumo Geral</h1>
+          <h1 className=" text-primary text-lg font-semibold">Resumo Geral</h1>
 
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <CardResumeValue
@@ -74,7 +73,7 @@ export function AppInterface({ user, verify }: { user: any; verify: boolean }) {
             </div>
 
             <div className="flex w-full h-full overflow-hidden mt-4">
-              <TableLastedServices />
+              <TableLastedOrdersContainer />
             </div>
           </div>
           <div className="col-span-2 md:col-span-1  overflow-hidden card bg-popover/30 w-full h-full  rounded-2xl shadow-sm p-4">

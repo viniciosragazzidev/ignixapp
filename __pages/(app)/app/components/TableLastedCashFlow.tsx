@@ -19,7 +19,7 @@ export default function TableLastedCashFlow() {
   return (
     <Card className="border-0   w-full overflow-hidden">
       <CardContent className="p-0 w-full  ">
-        <Table className="w-full p-0 bg-popover/30">
+        <Table className="w-full p-0 ">
           <TableHeader>
             <TableRow>
               <TableHead>Customer</TableHead>

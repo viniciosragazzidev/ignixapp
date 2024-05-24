@@ -1,7 +1,13 @@
 "use client";
 import * as React from "react";
 import CardResumeValue from "../../components/CardResumeValue";
-import { FaOpencart, FaToolbox, FaTools, FaUser } from "react-icons/fa";
+import {
+  FaOpencart,
+  FaSearch,
+  FaToolbox,
+  FaTools,
+  FaUser,
+} from "react-icons/fa";
 import {
   IoAlertCircleSharp,
   IoBriefcase,
@@ -35,9 +41,9 @@ export function AppOrdersInterface({
   const data = orderData;
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 ">
-      <header className="w-full min-h-20 bg-primary space-y-2 pb-4 rounded-b-3xl">
+      <header className="w-full min-h-20  space-y-2 pb-4 rounded-b-3xl">
         <div className="container py-4 space-y-4">
-          <h1 className=" text-muted text-lg font-semibold">
+          <h1 className=" text-primary text-lg font-semibold">
             Ordens de Serviços
           </h1>
 
@@ -114,17 +120,22 @@ export function AppOrdersInterface({
                 </TabsTrigger>
               </TabsList>
 
-              <Input
-                type="search"
-                placeholder="Buscar ordem de serviço"
-                className="w-full border-primary/5 "
-              />
+              <div className="relative w-full">
+                <span className="absolute inset-y-0 left-0 flex items-center text-muted-foreground/50 pl-2">
+                  <FaSearch />
+                </span>
+                <Input
+                  type="search"
+                  placeholder="Buscar ordem de serviço"
+                  className="w-full border-primary/5  shadow-none pl-8 "
+                />
+              </div>
 
               <div className="flex items-center gap-5 self-end justify-start md:justify-end w-full">
                 <Button
                   size={"sm"}
-                  variant={"outline"}
-                  className=" flex items-center gap-1 hover:bg-primary font-semibold transition-all "
+                  variant={"simple"}
+                  className=" flex items-center gap-1  font-semibold transition-all "
                 >
                   {" "}
                   <FilterIcon className="h-4 w-4" /> Filtrar
@@ -138,21 +149,26 @@ export function AppOrdersInterface({
                 </Button>
               </div>
             </header>
-            <React.Suspense fallback={<TableSuspenseLoading />}>
-              <TabsContent value="all">
-                <OsTableContainer
-                  type="all"
-                  search={searchTerm}
-                  status="all"
-                />
-              </TabsContent>
-              <TabsContent value="open">
-                <OsTableContainer />
-              </TabsContent>
-              <TabsContent value="finished">
-                <OsTableContainer />
-              </TabsContent>
-            </React.Suspense>
+            <div className="bg-popover/30 overflow-hidden rounded-2xl p-5">
+              <React.Suspense fallback={<TableSuspenseLoading />}>
+                <TabsContent
+                  className=""
+                  value="all"
+                >
+                  <OsTableContainer
+                    type="all"
+                    search={searchTerm}
+                    status="all"
+                  />
+                </TabsContent>
+                <TabsContent value="open">
+                  <OsTableContainer />
+                </TabsContent>
+                <TabsContent value="finished">
+                  <OsTableContainer />
+                </TabsContent>
+              </React.Suspense>
+            </div>
           </Tabs>
         </div>
       </main>

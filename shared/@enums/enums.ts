@@ -17,9 +17,10 @@ export enum HttpRoutes {
 }
 
 export enum StatusOs {
-  PENDENTE = "PENDENTE",
-  EM_ANDAMENTO = "EM ANDAMENTO",
-  CONCLUIDO = "CONCLUIDO",
-  ENTREGUE = "ENTREGUE",
-  CANCELADO = "CANCELADO",
+  PENDENTE = "Pendente",
+  INICIADO = "Iniciado",
+  FINALIZADO = "Finalizado",
+  ENTREGUE = "Entregue",
+  CANCELADO = "Cancelado",
+  FECHADO = "Fechado",
 }

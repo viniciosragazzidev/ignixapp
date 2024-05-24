@@ -6,7 +6,7 @@ import NavbarHeaderProfile from "./NavbarHeaderProfile";
 
 const NavbarHeader = ({ user }: { user: any }) => {
   return (
-    <nav className="flex justify-between md:justify-center bg-primary text-muted px-1 md:px-8 pt-8 pb-5   overflow-hidden">
+    <nav className="flex justify-between md:justify-center bg-primary text-muted px-1 md:px-8  py-2 overflow-hidden">
       <div className="w-full px-4 lg:px-0 lg:container flex justify-between items-center">
         <NavbarHeaderMenu />
 
