@@ -58,7 +58,7 @@ export function DataTablePagination<OSTypedata>({
         </div>
         <div className="flex items-center space-x-2">
           <Button
-            variant="success"
+            variant="simple"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
@@ -67,7 +67,7 @@ export function DataTablePagination<OSTypedata>({
             <DoubleArrowLeftIcon className="h-4 w-4" />
           </Button>
           <Button
-            variant="success"
+            variant="simple"
             className="h-8 w-8 p-0"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -76,7 +76,7 @@ export function DataTablePagination<OSTypedata>({
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>
           <Button
-            variant="success"
+            variant="simple"
             className="h-8 w-8 p-0"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
@@ -85,7 +85,7 @@ export function DataTablePagination<OSTypedata>({
             <ChevronRightIcon className="h-4 w-4" />
           </Button>
           <Button
-            variant="success"
+            variant="simple"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
