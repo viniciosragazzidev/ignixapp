@@ -148,7 +148,7 @@ export function AppOrdersInterface({
                 </Button>
               </div>
             </header>
-            <div className="bg-popover/30 dark:bg-secondary/5 overflow-hidden rounded-2xl p-5">
+            <div className="bg-popover/15 dark:bg-secondary/5 overflow-hidden rounded-2xl p-5">
               <React.Suspense fallback={<TableSuspenseLoading />}>
                 <TabsContent
                   className=""

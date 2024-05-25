@@ -61,7 +61,7 @@ export function AppInterface({ user, verify }: { user: any; verify: boolean }) {
           </Button>
         </div>
         <div className="container w-full min-h-96 grid grid-cols-1 md:grid-cols-4 gap-4 ">
-          <div className="card bg-popover/30 dark:bg-secondary/5  w-full h-full col-span-2 overflow-hidden rounded-2xl shadow-sm p-6">
+          <div className="card bg-popover/15 dark:bg-secondary/5  w-full h-full col-span-2 overflow-hidden rounded-2xl shadow-sm p-6">
             <div className="flex items-center justify-between">
               <h1 className="font-bold text-base">Ultimos Serviços</h1>
 
@@ -77,7 +77,7 @@ export function AppInterface({ user, verify }: { user: any; verify: boolean }) {
               <TableLastedOrdersContainer />
             </div>
           </div>
-          <div className="col-span-2 md:col-span-1  overflow-hidden card bg-popover/30 dark:bg-secondary/5 w-full h-full  rounded-2xl shadow-sm p-4">
+          <div className="col-span-2 md:col-span-1  overflow-hidden card bg-popover/15 dark:bg-secondary/5 w-full h-full  rounded-2xl shadow-sm p-4">
             <div className="flex items-center justify-between">
               <h1 className="font-bold text-base">Ultimas Transações</h1>
 
@@ -93,7 +93,7 @@ export function AppInterface({ user, verify }: { user: any; verify: boolean }) {
               <TableLastedCashFlow />
             </div>
           </div>
-          <div className="col-span-2 md:col-span-1 card bg-popover/30 dark:bg-secondary/5 w-full h-full  rounded-2xl shadow-sm p-4 overflow-hidden">
+          <div className="col-span-2 md:col-span-1 card bg-popover/15 dark:bg-secondary/5 w-full h-full  rounded-2xl shadow-sm p-4 overflow-hidden">
             <div className="flex items-center justify-between">
               <h1 className="font-bold text-base">Ultimas Vendas</h1>
 

@@ -101,16 +101,21 @@ const OsTable = ({ data, header }: OsTableInterface) => {
                 <TableCell className="whitespace-nowrap text-start">
                   {" "}
                   <Badge
-                    className="text-xs font-semibold"
-                    variant={
-                      item.status === StatusOs.PENDENTE
-                        ? "outline"
+                    className={`text-xs font-semibold  ${
+                      item.status === StatusOs.FINALIZADO
+                        ? "text-blue-300 dark:text-blue-500"
                         : item.status === StatusOs.INICIADO
-                        ? "default"
-                        : item.status === StatusOs.FINALIZADO
-                        ? "success"
-                        : "destructive"
-                    }
+                        ? "text-cyan-100 dark:text-cyan-400"
+                        : item.status === StatusOs.ENTREGUE
+                        ? "text-teal-100 dark:text-teal-400"
+                        : item.status === StatusOs.CANCELADO
+                        ? "text-red-100 dark:text-red-400"
+                        : item.status === StatusOs.FECHADO
+                        ? "text-slate-300"
+                        : item.status === StatusOs.PENDENTE &&
+                          "text-amber-100 dark:text-amber-400"
+                    }`}
+                    variant={"custom"}
                   >
                     {item.status}
                   </Badge>
