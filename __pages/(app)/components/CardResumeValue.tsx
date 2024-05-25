@@ -25,7 +25,7 @@ export default function CardResumeValue({
   return (
     <Card
       className={cn(
-        `${props.className} w-full  cursor-pointer bg-primary hover:bg-primary/95 transition-all border-none text-muted`
+        `${props.className} w-full  cursor-pointer bg-primary hover:bg-primary/95 transition-all border-none text-muted dark:text-accent-foreground`
       )}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -34,7 +34,7 @@ export default function CardResumeValue({
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{props.value}</div>
-        <p className="text-xs text-muted/80">
+        <p className="text-xs text-muted/80 dark:text-muted-foreground">
           {props.lastMonthValue} que o mês passado
         </p>
       </CardContent>

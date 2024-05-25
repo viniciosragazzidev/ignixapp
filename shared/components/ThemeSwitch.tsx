@@ -16,7 +16,7 @@ export function ModeToggle() {
   return (
     <Button
       variant="simple"
-      className="overflow-hidden relative"
+      className="overflow-hidden relative text-accent bg-transparent border-none hover:bg-secondary/80"
       onClick={() => {
         setThemeState(theme === "light" ? "dark" : "light");
         setTheme(theme === "light" ? "dark" : "light");

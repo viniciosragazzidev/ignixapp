@@ -20,7 +20,7 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
               <Image
                 src={
                   user.image ||
-                  `https://via.assets.so/img.jpg?w=80&h=80&tc=blue&bg=#cecece
+                  `https://via.assets.so/img.jpg?w=80&h=80&tc=#fff&bg=#cecece
                 `
                 }
                 alt={user.name}
@@ -29,7 +29,9 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
             </span>
             <div className=" flex-col items-start hidden lg:flex">
               <span className="text-sm font-medium">{user.name}</span>
-              <span className="text-xs text-muted lowercase">{user.role}</span>
+              <span className="text-xs text-muted dark:text-muted-foreground lowercase">
+                {user.role}
+              </span>
             </div>
           </div>
           <span>
@@ -38,7 +40,7 @@ const NavbarHeaderProfile = ({ user }: { user: any }) => {
         </div>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-max min-w-52 bg-secondary-foreground outline-none ring-0 border-0 text-muted space-y-1 pb-3">
+      <DropdownMenuContent className="w-max min-w-52 bg-primary dark:text-accent-foreground outline-none ring-0 border-0 text-muted space-y-1 pb-3 p-2">
         <DropdownMenuItem className="cursor-pointer w-full h-full transition-colors rounded-lg hover:bg-primary/50">
           <span>Minha conta</span>
         </DropdownMenuItem>

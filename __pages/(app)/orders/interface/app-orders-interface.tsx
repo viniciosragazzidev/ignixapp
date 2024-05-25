@@ -30,6 +30,7 @@ import { DataTablePagination } from "../../components/TablePagination";
 import { orderData } from "../components/DataTable";
 import OsTableContainer from "../components/OsTableContainer";
 import TableSuspenseLoading from "../../components/TableSuspenseLoading";
+import Title from "@/shared/components/ui/title";
 export function AppOrdersInterface({
   user,
   verify,
@@ -40,12 +41,10 @@ export function AppOrdersInterface({
   const [searchTerm, setSearchTerm] = React.useState("");
   const data = orderData;
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40 ">
+    <div className="flex min-h-screen w-full flex-col   ">
       <header className="w-full min-h-20  space-y-2 pb-4 rounded-b-3xl">
         <div className="container py-4 space-y-4">
-          <h1 className=" text-primary text-lg font-semibold">
-            Ordens de Serviços
-          </h1>
+          <Title>Ordens de Serviços</Title>
 
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <CardResumeValue
@@ -98,7 +97,7 @@ export function AppOrdersInterface({
             className=""
           >
             <header className="w-full flex flex-col items-start md:flex-row md:items-center gap-5  py-4">
-              <TabsList className=" text-muted/85 bg-transparent">
+              <TabsList className=" text-muted/85 dark:text-accent-foreground bg-transparent">
                 <TabsTrigger
                   value="all"
                   className="text-sm"
@@ -142,14 +141,14 @@ export function AppOrdersInterface({
                 </Button>
                 <Button
                   size={"sm"}
-                  className="bg-secondary flex items-center gap-1 hover:bg-primary font-semibold transition-all "
+                  className="bg-secondary dark:bg-primary flex items-center gap-1 hover:bg-primary font-semibold transition-all "
                 >
                   {" "}
                   <CalendarIcon /> Gerar Relatório{" "}
                 </Button>
               </div>
             </header>
-            <div className="bg-popover/30 overflow-hidden rounded-2xl p-5">
+            <div className="bg-popover/30 dark:bg-secondary/5 overflow-hidden rounded-2xl p-5">
               <React.Suspense fallback={<TableSuspenseLoading />}>
                 <TabsContent
                   className=""

@@ -34,8 +34,8 @@ interface OsTableInterface {
 }
 const OsTable = ({ data, header }: OsTableInterface) => {
   return (
-    <Card className="border-0  w-full overflow-hidden">
-      <CardContent className="p-0 w-full   ">
+    <Card className="border-0 bg-transparent  w-full overflow-hidden">
+      <CardContent className="p-0 w-full    ">
         <TableC.Root>
           <TableHeader>
             <TableRow>
@@ -72,11 +72,11 @@ const OsTable = ({ data, header }: OsTableInterface) => {
                       </Badge>
                     </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="w-48 py-1 overflow-hidden  bg-secondary-foreground outline-none divide-y divide-muted/30  ring-0 border-0 text-muted  pb-3 mt-3 px-4 pt-1 rounded-lg">
+                    <DropdownMenuContent className="w-max rounded-xl px-1 min-w-52 bg-primary dark:text-accent-foreground outline-none ring-0 border-0 text-muted space-y-1 pb-3 p-2">
                       {item.items.map((item) => (
                         <DropdownMenuItem
                           key={item.id}
-                          className="cursor-pointer w-full h-full  rounded-xl transition-colors hover:bg-primary/50 py-2 flex items-center gap-3  border-none outline-none right-0"
+                          className="cursor-pointer w-full h-full  rounded-xl px-2 transition-colors hover:bg-secondary/50 py-2 flex items-center gap-3  border-none outline-none right-0 "
                         >
                           <span>
                             <FaBox />

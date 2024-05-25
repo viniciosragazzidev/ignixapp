@@ -1,26 +1,12 @@
 "use server";
 import { HttpErrorCode, HttpRoutes } from "@/shared/@enums/enums";
+import { getUserByEmail } from "@/shared/actions/actions";
 import { setHibrid } from "@/shared/components/providers/HibridToast";
 import { compareSync, hashSync } from "bcrypt-ts";
 const urlBase = process.env.NEXT_PUBLIC_BASE_URL;
 export const SignupAction = async (user: any) => {
   try {
-    const userSession = await fetch(
-      `${urlBase}/api/${HttpRoutes.user}/${user.email}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "GET",
-        next: {
-          revalidate: 100,
-          tags: ["user"],
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => data.user);
-
+    const userSession = await getUserByEmail(user.email);
     if (userSession) {
       return {
         message: "❌ Usuário ja cadastrado com esse email!",

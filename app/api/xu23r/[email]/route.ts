@@ -18,6 +18,9 @@ export async function GET(
       where: {
         email: email,
       },
+      include: {
+        memberships: true,
+      },
     });
     return NextResponse.json({ user: user });
   } catch (error) {
